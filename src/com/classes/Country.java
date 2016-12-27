@@ -21,7 +21,6 @@ public class Country {
     private String region;
     private String pathToflag;
     private String pathToLocator;
-    private String densite;
 
     /**
      * @param enName  Le nom anglais du pays
@@ -163,15 +162,12 @@ public class Country {
     /**
      * @return La densité du pays
      */
-    public String getDensite() {
-        return densite;
+    public double getDensite() {
+    try{
+        return Double.parseDouble(pop.replace(',', '.'))/Double.parseDouble(area.replace(',', '.'))*1000;
+    } catch(Exception e){
+    	return 0;
     }
-
-    /**
-     * @param densite La nouvelle densité du pays
-     */
-    public void setDensite(String densite) {
-        this.densite = densite;
     }
 
     /**
