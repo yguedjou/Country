@@ -5,166 +5,114 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * @author Yasmine Guedjou
+ * @since 06-12-2016
+ */
 public class Countries {
-    private HashMap<String, Country> countries = new HashMap<String, Country>();
-
+    private HashMap<String, Country> countries = new HashMap<>();
 
     /**
-     * Method used to add a country to the arrayList
+     * @param country Le pays à rajouter à la map des pays
      */
-
     public void addCountry(Country country) {
         countries.put(country.getIso3(), country);
-
     }
 
-
     /**
-     * Method used to search by english name
+     * Recherche dans la liste des pays par le nom anglais
+     *
+     * @param engName Le nom anglais à chercher
+     * @return Le pays correspondant, ou null si aucun résultat
      */
-
-
     public Country searByEnName(String engName) {
         Collection<Country> values = countries.values();
-        for (Country c : values) {
-            if (c.getEnName().contains(engName)) {
+        for (Country c : values)
+            if (c.getEnName().contains(engName))
                 return c;
-            }
-
-
-        }
         return null;
-
     }
 
     /**
-     * Method used to search by french name
+     * Recherche dans la liste des pays par le nom francais
+     *
+     * @param frName Le nom francais à chercher
+     * @return Le pays correspondant, ou null si aucun résultat
      */
-
     public Country searchByfrName(String frName) {
         Collection<Country> values = countries.values();
-        for (Country c : values) {
-            if (c.getFrName().toLowerCase().trim().contains(frName)) {
+        for (Country c : values)
+            if (c.getFrName().toLowerCase().trim().contains(frName))
                 return c;
-            }
-        }
         return null;
     }
 
     /**
-     * Method used to sort countries by french name
+     * Affiche la liste des pays triés par ordre croissant selon les noms francais
      */
     public void sortByFrName() {
         Map<String, Country> noms = new TreeMap<>();
-        for (Map.Entry<String, Country> pays : countries.entrySet()) {// je récupère la ligne
+        for (Map.Entry<String, Country> pays : countries.entrySet())
             noms.put(pays.getValue().getFrName(), pays.getValue());
-        }
-        for (Map.Entry<String, Country> nomPays : noms.entrySet()) {
-            System.out.println(nomPays.getValue().toString());
-            System.out.println("\n");
-        }
 
-
+        for (Map.Entry<String, Country> nomPays : noms.entrySet())
+            System.out.println(nomPays.getValue() + "\n");
     }
 
     /**
-     * Method used to search by population
+     * Recherche dans la liste des pays par la population
      */
     public Country searchByPopulation(String pop) {
-        HashMap<String, Country> populations = new HashMap<String, Country>();
-        for (Map.Entry<String, Country> line : countries.entrySet()) {// je récupère la ligne
+        HashMap<String, Country> populations = new HashMap<>();
+        for (Map.Entry<String, Country> line : countries.entrySet())
             populations.put(line.getValue().getPop().trim(), line.getValue());
-        }
-        if (populations.containsKey(pop)) {
+        if (populations.containsKey(pop))
             return populations.get(pop);
-        }
+
         return null;
-
-
     }
 
-
     /**
-     * Method used to convert every single engName to Iso3
-     */
-
-    public HashMap<String, Country> convertEnNameToISO3() {
-        HashMap<String, Country> conversions = new HashMap<String, Country>();
-        for (Map.Entry<String, Country> line : countries.entrySet()) {// je récupère la ligne
-            conversions.put(line.getValue().getEnName(), line.getValue());
-        }
-        return conversions;
-    }
-
-
-    /**
-     * Method used to search a country by ISO3 or economic name
+     * Recherche un pays par sa norme ISO3 ou par son nom économique
      *
-     * @param iso3
+     * @param iso3         La norme ISO3 à chercher
+     * @param economicName Le nom économique à chercher
+     * @return Le pays correspondant, ou null si aucun résultat
      */
-
     public Country search_By_ISO3_EcoName(String iso3, String economicName) {
-        if ((countries.containsKey(iso3))) {
+        if ((countries.containsKey(iso3)))
             return (countries.get(iso3));
-        } else {
+        else
             return this.searByEnName(economicName);
-        }
-
     }
 
     /**
-     * Method used to search a country by ISO3
+     * Recherche un pays par son nom anglais ou par son nom économique
      *
-     * @param iso3
+     * @param name Le nom du pays à chercher
+     * @return Le pays correspondant, ou null si aucun résultat
      */
-
-    public Country search_By_ISO3(String iso3) {
-        if (countries.containsKey(iso3)) {
-            return countries.get(iso3);
-        }
-        return null;
-    }
-
-
-    /**
-     * Method used to search a country by engNma or Economic name
-     */
-
     public Country searchByEngName_EconomicName(String name) {
         Collection<Country> values = countries.values();
         for (Country c : values) {
-            if ((c.getEnName().contains(name))) {
+            if ((c.getEnName().contains(name)))
                 return c;
-            } else if ((c.getEconomicName() != null) && (c.getEconomicName().contains(name))) {
+            else if ((c.getEconomicName() != null) && (c.getEconomicName().contains(name)))
                 return c;
-            }
         }
         return null;
     }
 
-
     /**
-     * Method used to return a treeMap
+     * @return Une chaine decrivant le pays
      */
-
-    public Map<String, Country> triEngName() {
-        Map<String, Country> noms = new TreeMap<>();
-        for (Map.Entry<String, Country> countries : countries.entrySet()) {
-            noms.put(countries.getValue().getEnName(), countries.getValue());
-        }
-        return noms;
-    }
-
-
     @Override
     public String toString() {
         String lines = null;
         Collection<Country> values = countries.values();
-        for (Country country : values) {
+        for (Country country : values)
             lines = lines + " \n \n \n" + country.toString();
-        }
+
         return lines;
     }
-
-
 }
