@@ -19,6 +19,9 @@ public class AllData {
 	// to parse xml file 
 	private XmlSource xmlsource = new XmlSource();
 	
+	private static final String dossierDataCSV = "data/dataCSV/";
+	private static final String dossierGraphics = "data/graphics/";
+	
 	
 	/**
 	 * Constructeur 
@@ -38,7 +41,7 @@ public class AllData {
 	
 	public void extractCountryCode () {
 		/**create a Map of countries with country Codes */
-		ArrayList<String[]> codes =  pCSV.parseCsvCodesToMap("data/country_codes_iso.csv");
+		ArrayList<String[]> codes =  pCSV.parseCsvCodesToMap(dossierDataCSV+"country_codes_iso.csv");
 		for (String[] codes_Country : codes) {
 			Country c = new Country (codes_Country[0], codes_Country[1], codes_Country[2], codes_Country[3], codes_Country[4]);
 			countries.addCountry(c);
@@ -56,7 +59,7 @@ public class AllData {
 	
 	public void extractPop() {
 		int cpt=0; 
-		ArrayList<String[]> population = popCsv.parser("/Users/yasmine/Desktop/Preject_S3/POP.csv"); 
+		ArrayList<String[]> population = popCsv.parser(dossierDataCSV+"POP.csv"); 
 		for (String[] country_Pop : population  ) {
 			int len= country_Pop.length; // ce test je dois le faire dans la classe de parsage 
 			if (len >=4 ){ // si la ligne contient bien l'information de la population  
@@ -88,7 +91,7 @@ public class AllData {
 
 	public void exctractArea () {
 		
-		ArrayList<String[]> areas =  areaCSV.parseCsvCodesToMap("/Users/yasmine/Desktop/Preject_S3/rawdata_2147.txt", "\t"); 
+		ArrayList<String[]> areas =  areaCSV.parseCsvCodesToMap(dossierDataCSV+"rawdata_2147.txt", "\t"); 
 		int compt=0;
 		for (String [] areaCountry : areas) {
 			Country c = countries.searchByEngName_EconomicName(areaCountry[1]);
@@ -109,15 +112,15 @@ public class AllData {
 	  * Method used to extract flag, local and map path's anf flips 
 	  */
 	public void extractFlips_And_Paths () {
-		ArrayList<String []> xmlInformation = xmlsource.parser("/Users/yasmine/Desktop/flash_files/sourceXML.xml"); 
+		ArrayList<String []> xmlInformation = xmlsource.parser(dossierGraphics+"flash_files/sourceXML.xml"); 
 		for (String [] values : xmlInformation) {
 			if (values.length >= 5 ){
 				Country c = countries.searByEnName(values[1]); 
 				if (c != null ) {
 					c.setFlips(values[3]);
 					c.setRegion(values[5]);
-					c.setPathToMap("/Users/yasmine/Desktop/maps/"+c.getFlips()+"-map.gif");
-					c.setPathToflag("/Users/yasmine/Desktop/flags/large/"+c.getFlips().toLowerCase()+"-bg-lgflag.gif");
+					c.setPathToMap(dossierGraphics+"maps/"+c.getFlips()+"-map.gif");
+					c.setPathToflag(dossierGraphics+"flags/large/"+c.getFlips().toLowerCase()+"-lgflag.gif");
 				}
 				else {
 					//System.out.println("Pays non trouvé : "+values[0]);

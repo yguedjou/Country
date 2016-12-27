@@ -17,7 +17,7 @@ public class IHMAgregator extends JFrame {
     /**       */
     private AllData data = new AllData();
 
-    private JFrame frameDrapeau;
+    private FrameDrapeau frameDrapeau;
 
     //Je saiis pas si j'en aurai besoin
     private JPanel contentPane;
@@ -151,7 +151,12 @@ public class IHMAgregator extends JFrame {
                     lblPopulation.setText(lblPopulation.getText() + "\t" + c.getPop());
                     lblDens.setText("Densité: " + "\t" + c.getDensite());
 
+                    if(frameDrapeau == null)
                     frameDrapeau = new FrameDrapeau(c.getPathToflag());
+                    else{
+                    	frameDrapeau.actualize(c.getPathToflag());
+                    }
+                    
                 } else {
                     System.out.println("Pays Non existant");
                 }

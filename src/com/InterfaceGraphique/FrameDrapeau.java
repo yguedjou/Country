@@ -17,4 +17,11 @@ public class FrameDrapeau extends JFrame {
         this.pack();
         this.setVisible(true);
     }
+    
+    public void actualize(String srcImage){
+    	this.setTitle(srcImage);
+    	this.labelImage.setIcon(new ImageIcon(srcImage));
+    	this.repaint();
+    	this.pack();
+    }
 }
