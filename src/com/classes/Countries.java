@@ -116,9 +116,7 @@ public class Countries {
     public Country searchByEngName_EconomicName(String name) {
         Collection<Country> values = countries.values();
         for (Country c : values) {
-            if ((c.getEnName().toLowerCase().trim().startsWith(name.toLowerCase().trim())))
-                return c;
-            else if ((c.getEconomicName() != null) && (c.getEconomicName().contains(name)))
+            if ((c.getEnName().toLowerCase().startsWith(name.toLowerCase().trim())))
                 return c;
         }
         return null;
