@@ -59,9 +59,10 @@ public class Countries {
 
     public Country searchByfrName(String frName) {
         Collection<Country> values = countries.values();
-        for (Country c : values)
-            if (c.getFrName().toLowerCase().trim().contains(frName))
+        for (Country c : values) {
+            if (c.getFrName().toLowerCase().trim().startsWith(frName.toLowerCase()))
                 return c;
+        }
         return null;
     }
 
@@ -84,12 +85,11 @@ public class Countries {
      * @return Le pays correspondant, ou null si aucun résultat
      */
     public Country searchByPopulation(String pop) {
-        HashMap<String, Country> populations = new HashMap<>();
-        for (Map.Entry<String, Country> line : countries.entrySet())
-            populations.put(line.getValue().getPop().trim(), line.getValue());
-        if (populations.containsKey(pop))
-            return populations.get(pop);
-
+        for (Map.Entry<String, Country> line : countries.entrySet()) {
+            String popcountry = line.getValue().getPop();
+            if (popcountry != null && popcountry.equals(pop))
+                return line.getValue();
+        }
         return null;
     }
 

@@ -30,7 +30,7 @@ public class FramesImagesController implements Observer {
     @Override
     public void update(Observable observable, Object o) {
         frameDrapeau.actualize(paysSelection.getPays().getPathToflag(), "Drapeau " + paysSelection.getPays().getFrName());
-        frameMap.actualize(paysSelection.getPays().getPathToMap(), "Carte" + paysSelection.getPays().getFrName());
+        frameMap.actualize(paysSelection.getPays().getPathToMap(), "Carte " + paysSelection.getPays().getFrName());
         frameLocator.actualize(paysSelection.getPays().getPathToLocator(), "Carte Région " + paysSelection.getPays().getPathToLocator());
     }
 }

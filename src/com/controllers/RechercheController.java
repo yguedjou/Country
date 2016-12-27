@@ -30,15 +30,18 @@ public class RechercheController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
+        Country c = null;
         if (recherchePar.getSelectedIndex() == 0) {
-            Country c = data.getCountries().searchByfrName(rechercheTextField.getText());
-            // SI == 1 : Recherche par Population
-            // SI == 2 : Recherche par Region
-
-            if (c == null)
-                rechercheTextField.setText("Recherche inconnue");
-            else
-                paysSelection.setPays(c);
+            c = data.getCountries().searchByfrName(rechercheTextField.getText());
         }
+        if (recherchePar.getSelectedIndex() == 1) {
+            c = data.getCountries().searchByPopulation(rechercheTextField.getText());
+        }
+        // SI == 2 : Recherche par Region
+
+        if (c == null)
+            rechercheTextField.setText("Recherche inconnue");
+        else
+            paysSelection.setPays(c);
     }
 }
