@@ -1,185 +1,154 @@
 package com.InterfaceGraphique;
 
 import com.classes.AllData;
-import com.classes.Country;
+import com.controllers.FramesImagesController;
+import com.controllers.LabelsPaysController;
+import com.controllers.RechercheController;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
-
+/**
+ * La fenetre principale de l'application
+ *
+ * @author Yasmine Guedjou
+ * @since 20-12-2016
+ */
 public class IHMAgregator extends JFrame {
-    private static final Dimension IDEAL_MAIN_DIMENSION = new Dimension(800, 400);
-    /**       */
+
     private AllData data = new AllData();
 
+    private JPanel contentPane;
+
+    //TODO Mettre les images
     private FrameImage frameDrapeau;
     private FrameImage frameMap;
-    private JPanel contentPane;
-    private JTextField textField;
+
+    private JTextField rechercheTextField;
+    private JComboBox<String> rechercheComboBox;
+    private JButton rechercheBouton;
+    private JComboBox<String> triComboBox;
+    private JButton triBouton;
+
+    private JPanel panelCentre;
+
+    private JList<String> listePays;
+
     private JLabel lblNom;
     private JLabel lblDens;
     private JLabel lblSuper;
     private JLabel lblPopulation;
-    private JComboBox comboBox;
-    private ImageIcon flag;
-    private JLabel lblFlag;
 
-
-    public IHMAgregator(String title) {
-        super(title);
-    }
-
+    private PaysSelection paysSelection;
 
     /**
-     * Create the frame.
+     * Ouvre la fenetre principale
      */
     public IHMAgregator() {
+        super("Pays du monde");
+        contentPane = new JPanel(new BorderLayout());
+        this.setContentPane(contentPane);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setLocation(50, 50);
+        this.setResizable(false);
 
-        contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        contentPane.setLayout(null);
-        setBounds(100, 100, 450, 300);
-        setContentPane(contentPane);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        paysSelection = new PaysSelection();
 
+        creerPanelActions();
+        panelCentre = new JPanel(new GridLayout(1, 2));
+        creerPanelInfosPays();
+        creerListePays();
+        contentPane.add(panelCentre, BorderLayout.CENTER);
 
-        // ComboBox Box for search
-        comboBox = new JComboBox();
-        comboBox.setBounds(6, 24, 138, 27);
-        comboBox.addItem("Recherche Par Nom");
-        comboBox.addItem("Recharche Par Population");
-        comboBox.addItem("Recherche Par Region");
-        comboBox.addItemListener(new ItemState());
-        contentPane.add(comboBox);
-        // Jtext Field to enter what we are searching for
-        textField = new JTextField();
-        textField.setBounds(156, 23, 130, 26);
-        contentPane.add(textField);
-        textField.setColumns(10);
+        frameDrapeau = new FrameImage();
+        frameMap = new FrameImage();
+        FramesImagesController fic = new FramesImagesController(paysSelection, frameDrapeau, frameMap);
+        paysSelection.addObserver(fic);
 
 
-        // Second ComboBox to sort countries
-        JComboBox comboBox_1 = new JComboBox();
-        comboBox_1.setBounds(367, 24, 130, 27);
-        contentPane.add(comboBox_1);
 
-
-        // il me manque un jtf
-
-
-        // Jlabel to display Name
-        lblNom = new JLabel("Nom");
-        lblNom.setBounds(0, 84, 130, 16);
-        contentPane.add(lblNom);
-
-
-        // Jlabel to put on it the flag
-        lblFlag = new JLabel("flag");
-        lblFlag.setBounds(156, 69, 130, 49);
-        contentPane.add(lblFlag);
-
-
-        // Jlabel to Display Densite
-        lblDens = new JLabel("Densité");
-        lblDens.setBounds(6, 242, 396, 16);
-        contentPane.add(lblDens);
-        // Jlabel to display Population
-        lblPopulation = new JLabel("Population");
-        lblPopulation.setBounds(6, 224, 396, 16);
-        contentPane.add(lblPopulation);
-        // Jlabel to display area
-        lblSuper = new JLabel("Superficie");
-        lblSuper.setBounds(6, 201, 396, 16);
-        contentPane.add(lblSuper);
-
-        JButton btnGo = new JButton("Go");
-        btnGo.addActionListener(new GetJtf());
-        btnGo.setBounds(282, 24, 41, 27);
-        contentPane.add(btnGo);
-
-        // Afficher les images
-
-
-        setPreferredSize(IDEAL_MAIN_DIMENSION);
         this.pack();
         this.setVisible(true);
-
-
     }
 
-
-    // inner class
-
     /**
-     * Launch the application.
+     * Démarre l'application graphique
      */
     public static void main(String[] args) {
         new IHMAgregator();
     }
 
-    public class ItemState implements ItemListener {
-        @Override
-        public void itemStateChanged(ItemEvent e) {
-            // TODO Auto-generated method stub
+    public void creerListePays() {
+        DefaultListModel<String> modelListe = new DefaultListModel<>();
+        modelListe.addElement("Aucun pays sélectionné");
 
-        }
+        listePays = new JList<>(modelListe);
+        listePays.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        listePays.setSelectedIndex(0);
 
-        public String returnResult() {
-
-            if (comboBox.getSelectedItem().toString().equals("Recherche Par Nom")) {
-                return "0";
-
-            } else {
-                return "1";
-            }
-
-        }
-
+        JPanel panelListePays = new JPanel();
+        panelListePays.add(listePays);
+        panelListePays.setBorder(BorderFactory.createLoweredSoftBevelBorder());
+        panelListePays.setPreferredSize(new Dimension(400, 200));
+        panelCentre.add(panelListePays);
     }
 
-    public class GetJtf implements ActionListener {
+    public void creerPanelInfosPays() {
+        JPanel panelInfos = new JPanel(new GridLayout(4, 2));
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            // TODO Auto-generated method stub
-            ItemState itemState = new ItemState();
-            if (itemState.returnResult() == "0") {
-                Country c = data.getCountries().searchByfrName(textField.getText());
-                if (c != null) {
+        panelInfos.add(new JLabel("Nom : "));
+        lblNom = new JLabel("-");
+        panelInfos.add(lblNom);
 
-                    lblNom.setText("Nom:" + "\t" + c.getFrName());
-                    lblSuper.setText("Superficie:" + "\t" + c.getArea());
-                    lblPopulation.setText("Population:" + "\t" + c.getPop());
-                    lblDens.setText("Densité: " + "\t" + c.getDensite());
+        panelInfos.add(new JLabel("Densité : "));
+        lblDens = new JLabel("-");
+        panelInfos.add(lblDens);
 
-                    if (frameDrapeau == null)
-                        frameDrapeau = new FrameImage(c.getPathToflag(), "Drapeau " + c.getFrName());
-                    else {
-                        frameDrapeau.actualize(c.getPathToflag(), "Drapeau " + c.getFrName());
-                    }
+        panelInfos.add(new JLabel("Population : "));
+        lblPopulation = new JLabel("-");
+        panelInfos.add(lblPopulation);
 
-                    if (frameMap == null)
-                        frameMap = new FrameImage(c.getPathToMap(), "Carte " + c.getFrName());
-                    else {
-                        frameMap.actualize(c.getPathToMap(), "Carte" + c.getFrName());
-                    }
+        panelInfos.add(new JLabel("Superficie"));
+        lblSuper = new JLabel("-");
+        panelInfos.add(lblSuper);
 
-                } else {
-                    System.out.println("Pays Non existant");
-                }
+        LabelsPaysController lpc = new LabelsPaysController(lblNom, lblPopulation, lblDens, lblSuper, paysSelection);
+        paysSelection.addObserver(lpc);
 
+        panelCentre.add(panelInfos);
+    }
 
-            } else {
-                System.out.println("Rien faire pour le moment!");
-            }
+    public void creerPanelActions() {
 
+        JPanel panelRecherche = new JPanel();
+        rechercheComboBox = new JComboBox<>();
+        rechercheComboBox.addItem("Recherche Par Nom");
+        rechercheComboBox.addItem("Recharche Par Population");
+        rechercheComboBox.addItem("Recherche Par Region");
+        panelRecherche.add(rechercheComboBox);
+        rechercheTextField = new JTextField();
+        rechercheTextField.setColumns(15);
+        panelRecherche.add(rechercheTextField);
+        rechercheBouton = new JButton("Rechercher");
+        RechercheController rc = new RechercheController(data, paysSelection, rechercheTextField, rechercheComboBox);
+        rechercheBouton.addActionListener(rc);
+        panelRecherche.add(rechercheBouton);
 
-        }
+        JPanel panelTri = new JPanel();
+        triComboBox = new JComboBox<>();
+        triComboBox.addItem("Tri par Nom Francais");
+        triComboBox.addItem("Tri par Région");
+        triComboBox.addItem("Tri par Population");
+        triComboBox.addItem("Tri par Etc");
+        panelTri.add(triComboBox);
+        triBouton = new JButton("Trier");
+        panelTri.add(triBouton);
 
+        JPanel panelActions = new JPanel(new GridLayout(2, 1));
+        panelActions.add(panelRecherche);
+        panelActions.add(panelTri);
+        panelActions.setBorder(BorderFactory.createRaisedBevelBorder());
+
+        contentPane.add(panelActions, BorderLayout.NORTH);
     }
 }

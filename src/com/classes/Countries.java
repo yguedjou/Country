@@ -12,6 +12,7 @@ import java.util.TreeMap;
  * @since 06-12-2016
  */
 public class Countries {
+
     private HashMap<String, Country> countries = new HashMap<>();
 
     /**
