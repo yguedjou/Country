@@ -17,11 +17,7 @@ public class IHMAgregator extends JFrame {
     /**       */
     private AllData data = new AllData();
 
-    private JPanel search_Tri_Panel = new JPanel();
-    private JPanel name_flag_Panel = new JPanel();
-    private JPanel mapsPanel = new JPanel();
-    private JPanel informationPanel = new JPanel();
-
+    private JFrame frameDrapeau;
 
     //Je saiis pas si j'en aurai besoin
     private JPanel contentPane;
@@ -154,8 +150,8 @@ public class IHMAgregator extends JFrame {
                     lblSuper.setText(lblSuper.getText() + "\t" + c.getArea());
                     lblPopulation.setText(lblPopulation.getText() + "\t" + c.getPop());
                     lblDens.setText("Densité: " + "\t" + c.getDensite());
-                    Icon image = new ImageIcon(c.getPathToflag());
-                    lblFlag.setIcon(image);
+
+                    frameDrapeau = new FrameDrapeau(c.getPathToflag());
                 } else {
                     System.out.println("Pays Non existant");
                 }
