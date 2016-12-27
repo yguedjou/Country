@@ -18,17 +18,20 @@ public class FramesImagesController implements Observer {
     private PaysSelection paysSelection;
     private FrameImage frameDrapeau;
     private FrameImage frameMap;
+    private FrameImage frameLocator;
 
-    public FramesImagesController(PaysSelection paysSelection, FrameImage frameDrapeau, FrameImage frameMap) {
+    public FramesImagesController(PaysSelection paysSelection, FrameImage frameDrapeau, FrameImage frameMap, FrameImage frameLocator) {
         this.paysSelection = paysSelection;
         this.frameDrapeau = frameDrapeau;
         this.frameMap = frameMap;
+        this.frameLocator = frameLocator;
     }
 
     @Override
     public void update(Observable observable, Object o) {
         frameDrapeau.actualize(paysSelection.getPays().getPathToflag(), "Drapeau " + paysSelection.getPays().getFrName());
         frameMap.actualize(paysSelection.getPays().getPathToMap(), "Carte" + paysSelection.getPays().getFrName());
+        frameLocator.actualize(paysSelection.getPays().getPathToLocator(), "Carte Région " + paysSelection.getPays().getPathToLocator());
     }
 }
 

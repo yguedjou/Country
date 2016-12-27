@@ -20,7 +20,7 @@ public class IHMAgregator extends JFrame {
 
     private JPanel contentPane;
 
-    //TODO Mettre les images
+    private FrameImage frameLocator;
     private FrameImage frameDrapeau;
     private FrameImage frameMap;
 
@@ -62,9 +62,9 @@ public class IHMAgregator extends JFrame {
 
         frameDrapeau = new FrameImage();
         frameMap = new FrameImage();
-        FramesImagesController fic = new FramesImagesController(paysSelection, frameDrapeau, frameMap);
+        frameLocator = new FrameImage();
+        FramesImagesController fic = new FramesImagesController(paysSelection, frameDrapeau, frameMap, frameLocator);
         paysSelection.addObserver(fic);
-
 
 
         this.pack();
@@ -114,7 +114,6 @@ public class IHMAgregator extends JFrame {
 
         LabelsPaysController lpc = new LabelsPaysController(lblNom, lblPopulation, lblDens, lblSuper, paysSelection);
         paysSelection.addObserver(lpc);
-
         panelCentre.add(panelInfos);
     }
 

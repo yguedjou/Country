@@ -20,6 +20,7 @@ public class Country {
     private String pathToMap;
     private String region;
     private String pathToflag;
+    private String pathToLocator;
     private String densite;
 
     /**
@@ -37,8 +38,7 @@ public class Country {
         this.iso3 = iso3;
         this.numeric = numeric;
     }
-
-    /**
+	/**
      * @return La superficie du pays
      */
     public String getArea() {
@@ -229,4 +229,19 @@ public class Country {
     public void setPathToMap(String pathToMap) {
         this.pathToMap = pathToMap;
     }
+    /**
+     *@return Le chemin vers le fichier de la map de la region  du pays
+     */
+    public String getPathToLocator() {
+		return pathToLocator;
+	}
+    /**
+     * @param pathToMap  vers le fichier de la map de la region du pays
+     */
+    public void setPathToLocator(String pathToLocator) {
+		this.pathToLocator = pathToLocator;
+	}
+    
+    
+    
 }

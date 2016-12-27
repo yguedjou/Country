@@ -98,16 +98,29 @@ public class AllData {
     private void extractFlips_And_Paths() {
         System.out.println("\n>>> Extraction images");
         ArrayList<String[]> xmlInformation = xmlsource.parser(dossierGraphics + "flash_files/sourceXML.xml");
-        int cpt = 0;
         for (String[] values : xmlInformation) {
             if (values.length >= 5) {
-                Country c = countries.searByEnName(values[1]);
+                Country c = countries.searByEnNameOnly(values[1]);
                 if (c != null) {
                     c.setFlips(values[3]);
                     c.setRegion(values[5]);
-                    c.setPathToMap(dossierGraphics + "maps/" + c.getFlips() + "-map.gif");
-                    c.setPathToflag(dossierGraphics + "flags/large/" + c.getFlips().toLowerCase() + "-lgflag.gif");
-                } else {
+                    c.setPathToMap(dossierGraphics + "maps/" + c.getFlips().toLowerCase() + "-map.gif");
+                    c.setPathToflag(dossierGraphics + "flags/large/" + c.getFlips().toLowerCase()+ "-lgflag.gif");
+                    switch (c.getRegion()) {
+                    case "Africa": c.setPathToLocator(dossierGraphics+"locator/afr/"+c.getFlips().toLowerCase()+"_large_locator.gif");break;
+                    case "Central America": c.setPathToLocator(dossierGraphics+"locator/afr/"+c.getFlips().toLowerCase()+"_large_locator.gif");break;
+                    case "Antartica": c.setPathToLocator(dossierGraphics+"locator/ant/"+c.getFlips().toLowerCase()+"_large_locator.gif");break;
+                    case "Middle East": c.setPathToLocator(dossierGraphics+"locator/mde/"+c.getFlips().toLowerCase()+"_large_locator.gif");break;
+                    case "Europe": c.setPathToLocator(dossierGraphics+"locator/eur/"+c.getFlips().toLowerCase()+"_large_locator.gif");break;
+                    case "North America": c.setPathToLocator(dossierGraphics+"locator/noa/"+c.getFlips().toLowerCase()+"_large_locator.gif");break;
+                    case "South America": c.setPathToLocator(dossierGraphics+"locator/soa/"+c.getFlips().toLowerCase()+"_large_locator.gif");break;
+                    case "South Asia": c.setPathToLocator(dossierGraphics+"locator/sas/"+c.getFlips().toLowerCase()+"_large_locator.gif");break;
+                    case "East Asia": c.setPathToLocator(dossierGraphics+"locator/eas/"+c.getFlips().toLowerCase()+"_large_locator.gif");break;
+                    case "Oceania": c.setPathToLocator(dossierGraphics+"locator/aus/"+c.getFlips().toLowerCase()+"_large_locator.gif");break;
+                    case "Central Asia": c.setPathToLocator(dossierGraphics+"locator/cas/"+c.getFlips().toLowerCase()+"_large_locator.gif");break;
+                    }
+                    
+                  } else {
 //                    System.out.println("Pays non trouvé : " + values[3]);
 //                    cpt++;
                 }
