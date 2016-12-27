@@ -32,7 +32,7 @@ public class LabelsPaysController implements Observer {
 
     @Override
     public void update(Observable observable, Object o) {
-        labelDens.setText(paysSelection.getPays().getDensite());
+        labelDens.setText(""+paysSelection.getPays().getDensite());
         labelNom.setText(paysSelection.getPays().getFrName());
         labelPop.setText(paysSelection.getPays().getPop());
         labelSuperficie.setText(paysSelection.getPays().getArea());
