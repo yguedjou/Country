@@ -4,7 +4,7 @@ package com.classes;
  * Le modèle d'un pays du monde
  *
  * @author Yasmine Guedjou
- * @since 5 décembre 2016
+ * @since 05-12-2016
  */
 public class Country {
 
@@ -23,8 +23,6 @@ public class Country {
     private String densite;
 
     /**
-     * Pour créer un nouveau pays
-     *
      * @param enName  Le nom anglais du pays
      * @param frName  Le nom francais du pays
      * @param iso2    La norme ISO2 du pays
@@ -45,6 +43,13 @@ public class Country {
      */
     public String getArea() {
         return area;
+    }
+
+    /**
+     * @param area La nouvelle superficie du pays
+     */
+    public void setArea(String area) {
+        this.area = area;
     }
 
     /**
@@ -118,13 +123,6 @@ public class Country {
     }
 
     /**
-     * @param area La nouvelle superficie du pays
-     */
-    public void setArea(String area) {
-        this.area = area;
-    }
-
-    /**
      * @return La population du pays
      */
     public String getPop() {
@@ -184,6 +182,13 @@ public class Country {
     }
 
     /**
+     * @param region La nouvelle région du pays
+     */
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    /**
      * @return Le chemin vers le fichier du drapeau
      */
     public String getPathToflag() {
@@ -195,13 +200,6 @@ public class Country {
      */
     public void setPathToflag(String pathToflag) {
         this.pathToflag = pathToflag;
-    }
-
-    /**
-     * @param region La nouvelle région du pays
-     */
-    public void setRegion(String region) {
-        this.region = region;
     }
 
     /**
