@@ -5,6 +5,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Classe de parsage du fichier contenant la population de chaque pays
+ *
+ * @author Yasmine Guedjou
+ * @since 17-12-2016
+ */
 public class CSV_Pop_Parser {
 
     /**
@@ -21,7 +27,7 @@ public class CSV_Pop_Parser {
     /**
      * Method used to spit each line into values
      *
-     * @param line
+     * @param line The line to parse
      * @return the array of values
      */
     public static String[] lineParser(String line) {

@@ -1,16 +1,19 @@
 package com.Utils;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+/**
+ * Classe de parsage du fichier CSV des superficies
+ *
+ * @author Yasmine Guedjou
+ * @since 20-12-2016
+ */
 public class ParseCsv {
-
-
     /**
      * Method used to extract country information from a csv file
      *
@@ -18,32 +21,23 @@ public class ParseCsv {
      * @return
      */
     public static ArrayList<String[]> parseCsvCodesToMap(String cheminCSV, String csvSplitBy) {
-
-
         /** Using ArrayList as the number of values are unknown at this stage */
-        ArrayList<String[]> result = new ArrayList<String[]>();
+        ArrayList<String[]> result = new ArrayList<>();
         String line = "";
         int cpt = 0;
         try (BufferedReader br = Files.newBufferedReader(Paths.get(cheminCSV), Charset.forName("ISO-8859-1"))) {
-
-            /** to repeat as much onces when the line isn't a country   */
+            /** to repeat as much as the line isn't a country   */
             br.readLine();
             while ((line = br.readLine()) != null) {
                 String[] lineSplit = line.split(csvSplitBy);
                 result.add(lineSplit);
                 cpt++;
             }
-
             System.out.println(" Lecture du fichier CSV reussie, " + cpt + " lignes lues");
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-
         }
         return result;
-
     }
 
 	

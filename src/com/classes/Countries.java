@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
+ * Le modèle contenant la liste de pays et différentes fonctions de recherche
+ *
  * @author Yasmine Guedjou
  * @since 06-12-2016
  */
