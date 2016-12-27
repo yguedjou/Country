@@ -38,7 +38,7 @@ public class AllData {
 	
 	public void extractCountryCode () {
 		/**create a Map of countries with country Codes */
-		ArrayList<String[]> codes =  pCSV.parseCsvCodesToMap("/Users/yasmine/Desktop/Preject_S3/country_codes_iso.csv"); 
+		ArrayList<String[]> codes =  pCSV.parseCsvCodesToMap("data/country_codes_iso.csv");
 		for (String[] codes_Country : codes) {
 			Country c = new Country (codes_Country[0], codes_Country[1], codes_Country[2], codes_Country[3], codes_Country[4]);
 			countries.addCountry(c);

@@ -7,45 +7,43 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class ParseCsv {
-	
-	
-	/**
-	 * Method used to extract country information from a csv file 
-	 * @param cheminCSV
-	 * @return
-	 */
-	public static ArrayList<String[]> parseCsvCodesToMap(String cheminCSV, String csvSplitBy) {
-		
-		 
-		/** Using ArrayList as the number of values are unknown at this stage */
-		ArrayList<String[]> result = new ArrayList<String[]>(); 
-		String line = "";
+
+
+    /**
+     * Method used to extract country information from a csv file
+     *
+     * @param cheminCSV
+     * @return
+     */
+    public static ArrayList<String[]> parseCsvCodesToMap(String cheminCSV, String csvSplitBy) {
+
+
+        /** Using ArrayList as the number of values are unknown at this stage */
+        ArrayList<String[]> result = new ArrayList<String[]>();
+        String line = "";
         int cpt = 0;
         try (BufferedReader br = Files.newBufferedReader(Paths.get(cheminCSV), Charset.forName("ISO-8859-1"))) {
-            
+
             /** to repeat as much onces when the line isn't a country   */
             br.readLine();
-            while ( (line = br.readLine() )  != null) {
-                String[] lineSplit = line.split(csvSplitBy); 
+            while ((line = br.readLine()) != null) {
+                String[] lineSplit = line.split(csvSplitBy);
                 result.add(lineSplit);
                 cpt++;
             }
-             
+
             System.out.println(" Lecture du fichier CSV reussie, " + cpt + " lignes lues");
 
-        }
-         
-        catch (FileNotFoundException e) {
-        	e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-           
+
         }
         return result;
-  
+
     }
 
 	
@@ -127,11 +125,6 @@ public class ParseCsv {
 	
 	
 	*/
-	
-	
-	
-	
-	
-	
+
 
 }
