@@ -15,7 +15,6 @@ public class ConsoleTest {
         switch (modeRecherche) {
             case "1": // tri
                 data.getCountries().sortByFrName();
-                ;
                 break;
             case "2":
                 ; // recherche
@@ -33,10 +32,8 @@ public class ConsoleTest {
                         } else {
                             System.out.println("Pays non trouvé");
                         }
-                        ;
                         break;
                     case "2":
-                        ;
                         break;
                     case "3":
                         System.out.println("Veuillez taper la population");
@@ -48,11 +45,9 @@ public class ConsoleTest {
                         } else {
                             System.out.println("Pays non trouvé");
                         }
-                        ;
                         break;
                     default:
                         System.out.println("Recherche  introuvable ");
-                        ;
                         break;
                 }
                 break;
@@ -62,7 +57,6 @@ public class ConsoleTest {
                 System.out.println("Choix introuvable");
                 break;
         }
-
     }
 }
 

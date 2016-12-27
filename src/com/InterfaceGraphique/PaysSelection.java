@@ -2,6 +2,8 @@ package com.InterfaceGraphique;
 
 import com.classes.Country;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 
 /**
@@ -14,8 +16,10 @@ import java.util.Observable;
 public class PaysSelection extends Observable {
 
     private Country pays;
+    private List<Country> paysList;
 
     public PaysSelection() {
+        paysList = new ArrayList<>();
         pays = new Country("null", "null", "null", "null", "null");
     }
 
@@ -27,5 +31,13 @@ public class PaysSelection extends Observable {
         this.pays = pays;
         this.setChanged();
         this.notifyObservers();
+    }
+
+    public List<Country> getPaysList() {
+        return paysList;
+    }
+
+    public void setPaysList(List<Country> paysList) {
+        this.paysList = paysList;
     }
 }

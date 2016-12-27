@@ -31,9 +31,11 @@ public class RechercheController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         Country c = null;
+        //Recherche par nom
         if (recherchePar.getSelectedIndex() == 0) {
             c = data.getCountries().searchByfrName(rechercheTextField.getText());
         }
+        //Recherche par population
         if (recherchePar.getSelectedIndex() == 1) {
             c = data.getCountries().searchByPopulation(rechercheTextField.getText());
         }
