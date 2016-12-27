@@ -31,7 +31,7 @@ public class Countries {
 	public Country searByEnName(String engName) {
 		 Collection<Country> values = countries.values(); 
 		 for (Country c : values) {
-			 if (  c.getEnName().contains(engName) ){
+			 if ( c.getEnName().contains(engName) ){
 				 return c; 
 			 }
 			 
@@ -46,19 +46,30 @@ public class Countries {
 	 */
 	
 	public Country searchByfrName (String frName){
-		HashMap<String, Country> frnoms = new HashMap<String, Country>(); 
-		for (Map.Entry<String, Country> line : countries.entrySet()) {// je récupère la ligne 
-            frnoms.put(line.getValue().getFrName().toLowerCase().trim(), line.getValue());
-        }
-		if (frnoms.containsKey(frName)) {
-			return frnoms.get(frName);
+		Collection<Country> values = countries.values(); 
+		for (Country c : values) {
+			 if ( c.getFrName().toLowerCase().trim().contains(frName)){
+				 return c; 
+			 }
 		}
-		return null; 
-		
-		
+		return null;
 	}
 	
-	
+	/**Method used to sort countries by french name
+	 * 
+	 */
+	public void sortByFrName (){
+		Map<String, Country> noms = new TreeMap<>();
+		for (Map.Entry<String,Country> pays : countries.entrySet()) {// je récupère la ligne 
+            noms.put(pays.getValue().getFrName(), pays.getValue());
+        }
+		for (Map.Entry<String, Country> nomPays : noms.entrySet()) {
+			System.out.println(nomPays.getValue().toString());
+			System.out.println("\n");
+	    }
+
+		
+	}
 	
 	/**
 	 * Method used to search by population 

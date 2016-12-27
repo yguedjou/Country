@@ -14,12 +14,20 @@ public class Country {
 	private String area; 
 	private String pop; 
 	private String economicName;
+	private String flips;
+	private String pathToMap; 
+	private String region; 
+	private String pathToflag; 
+	private String densite; 
+	
 	
 	
 	
 	/* Constructeur pour construire
 	 * 
 	 */
+
+	
 
 	public Country(String enName, String frName, String iso2, String iso3, String numeric) {
 		super();
@@ -135,12 +143,71 @@ public class Country {
 
 	@Override
 	public String toString() {
-		return "Country [enName=" + enName + ",  frName=" + frName + ",  iso2=" + iso2 + ",  iso3=" + iso3 + ",  numeric="
-				+ numeric + ",  area=" + area + ",  pop=" + pop + "]";
+		return "Country [enName=" + enName + ", frName=" + frName + ", iso2=" + iso2 + ", iso3=" + iso3 + ", numeric="
+				+ numeric + ", area=" + area + ", pop=" + pop + ", economicName=" + economicName + ", flips=" + flips
+				+ ", pathToMap=" + pathToMap + ", region=" + region + ", pathToflag=" + pathToflag + "]";
 	}
 
 
-	
+	public String getDensite() {
+		return densite;
+	}
+
+
+
+	public void setDensite(String densite) {
+		this.densite = densite;
+	}
+
+
+
+	public String getRegion() {
+		return region;
+	}
+
+
+
+	public String getPathToflag() {
+		return pathToflag;
+	}
+
+
+
+	public void setPathToflag(String pathToflag) {
+		this.pathToflag = pathToflag;
+	}
+
+
+
+	public void setRegion(String region) {
+		this.region = region;
+	}
+
+
+
+	public String getFlips() {
+		return flips;
+	}
+
+
+
+	public void setFlips(String flips) {
+		this.flips = flips;
+	}
+
+
+
+	public String getPathToMap() {
+		return pathToMap;
+	}
+
+
+
+	public void setPathToMap(String pathToMap) {
+		this.pathToMap = pathToMap;
+	}
+
+
 	
 	
 	

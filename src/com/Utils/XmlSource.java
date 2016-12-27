@@ -1,34 +1,32 @@
 package com.Utils;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
-import com.classes.Countries;
-
-public class CSV_Pop_Parser {
-
-	/** characters used as delimiters */
-	private static char[] separators = {',', '\t'};
-    
-    /** when the delimiters appears in the text the value will be between two double quotas */
-    private static char specialChars = '"';
-    
-    
-    /**
-     * Method used to spit each line into values
-     * 
-     * @param line
-     * @return the array of values
-     */
-    public static String[] lineParser(String line) {
+public class XmlSource {
+	private String name; 
+	private String fips; 
+	private String region; 
+	private static char[] separators = {'<','=','\t'};
+	private static char specialChars = '"';
+	
+	/**
+	 * method used to parse a line of xml file 
+	 * @param line
+	 * @return
+	 */
+	public static String[] lineParser(String line) {
         String[] result = null;
         
         
         /** Using as the number  of values are unknown at this stage */
         ArrayList<String> parsedLine = new ArrayList<String>();
-        
         int len = line.length();
         int i = 0;
         
@@ -86,16 +84,51 @@ public class CSV_Pop_Parser {
         result = parsedLine.toArray(new String[parsedLine.size()]);
         return result;
     }
-    
-    /**
-     * 
-     * Method used to parse the file
-     * 
-     * @param path to the file
-     * @return array of all lines
-     */
-    public static  ArrayList<String[]> parser(String path) {
-        BufferedReader br = null;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/**
+	 * Method used to get fips of a country 
+	 * 
+	 */
+	
+	public ArrayList<String[]> parser(String path) {
+		 
+		BufferedReader br = null;
         int cpt = 0; 
         ArrayList<String[]> result = new ArrayList<String[]>();
         try {
@@ -108,7 +141,6 @@ public class CSV_Pop_Parser {
                 
                 /** Parse each line into values */
                 String[] values = lineParser(line);
-                
                 /** Adding the lines to the array list */
                
                 result.add(values);
@@ -135,4 +167,14 @@ public class CSV_Pop_Parser {
     }
     
     
-}
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+	
