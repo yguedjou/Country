@@ -96,7 +96,7 @@ public class AllData {
 		for (String [] areaCountry : areas) {
 			Country c = countries.searchByEngName_EconomicName(areaCountry[1]);
 			if (c != null){
-				c.setArea(areaCountry[2]);
+				c.setArea(areaCountry[2].trim());
 			}else{
 				System.out.println(areaCountry[1]+": Pays Non trouvé");
 				compt++;

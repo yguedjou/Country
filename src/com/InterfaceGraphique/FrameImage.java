@@ -2,12 +2,12 @@ package com.InterfaceGraphique;
 
 import javax.swing.*;
 
-public class FrameDrapeau extends JFrame {
+public class FrameImage extends JFrame {
 
     private JLabel labelImage;
 
-    public FrameDrapeau(String srcImage) {
-        super("Drapeau : " + srcImage);
+    public FrameImage(String srcImage, String titre) {
+        super(titre);
 
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -18,7 +18,7 @@ public class FrameDrapeau extends JFrame {
         this.setVisible(true);
     }
     
-    public void actualize(String srcImage){
+    public void actualize(String srcImage, String titre){
     	this.setTitle(srcImage);
     	this.labelImage.setIcon(new ImageIcon(srcImage));
     	this.repaint();

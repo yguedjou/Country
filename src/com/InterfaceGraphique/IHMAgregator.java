@@ -17,9 +17,8 @@ public class IHMAgregator extends JFrame {
     /**       */
     private AllData data = new AllData();
 
-    private FrameDrapeau frameDrapeau;
-
-    //Je saiis pas si j'en aurai besoin
+    private FrameImage frameDrapeau;
+    private FrameImage frameMap;
     private JPanel contentPane;
     private JTextField textField;
     private JLabel lblNom;
@@ -29,6 +28,7 @@ public class IHMAgregator extends JFrame {
     private JComboBox comboBox;
     private ImageIcon flag;
     private JLabel lblFlag;
+    
 
 
     public IHMAgregator(String title) {
@@ -146,16 +146,22 @@ public class IHMAgregator extends JFrame {
                 Country c = data.getCountries().searchByfrName(textField.getText());
                 if (c != null) {
 
-                    lblNom.setText(lblNom.getText() + "\t" + c.getFrName());
-                    lblSuper.setText(lblSuper.getText() + "\t" + c.getArea());
-                    lblPopulation.setText(lblPopulation.getText() + "\t" + c.getPop());
+                    lblNom.setText("Nom:" + "\t" + c.getFrName());
+                    lblSuper.setText("Superficie:"+ "\t" + c.getArea());
+                    lblPopulation.setText("Population:" + "\t" + c.getPop());
                     lblDens.setText("Densité: " + "\t" + c.getDensite());
 
                     if(frameDrapeau == null)
-                    frameDrapeau = new FrameDrapeau(c.getPathToflag());
+                    frameDrapeau = new FrameImage(c.getPathToflag(), "Drapeau "+c.getFrName());
                     else{
-                    	frameDrapeau.actualize(c.getPathToflag());
+                    	frameDrapeau.actualize(c.getPathToflag(),"Drapeau "+c.getFrName());
                     }
+                    
+                    if(frameMap == null)
+                        frameMap = new FrameImage(c.getPathToMap(), "Carte "+c.getFrName());
+                        else{
+                        	frameMap.actualize(c.getPathToMap(),"Carte"+c.getFrName());
+                        }
                     
                 } else {
                     System.out.println("Pays Non existant");
