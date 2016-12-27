@@ -16,7 +16,7 @@ public class IHMAgregator extends JFrame {
     private static final Dimension IDEAL_MAIN_DIMENSION = new Dimension(800, 400);
     /**       */
     private AllData data = new AllData();
-
+    private FrameImage frameLocator; 
     private FrameImage frameDrapeau;
     private FrameImage frameMap;
     private JPanel contentPane;
@@ -34,7 +34,6 @@ public class IHMAgregator extends JFrame {
     public IHMAgregator(String title) {
         super(title);
     }
-
 
     /**
      * Create the frame.
@@ -142,7 +141,7 @@ public class IHMAgregator extends JFrame {
         public void actionPerformed(ActionEvent e) {
             // TODO Auto-generated method stub
             ItemState itemState = new ItemState();
-            if (itemState.returnResult() == "0") {
+            if (itemState.returnResult().equals("0")) {
                 Country c = data.getCountries().searchByfrName(textField.getText());
                 if (c != null) {
 
@@ -162,6 +161,15 @@ public class IHMAgregator extends JFrame {
                         else{
                         	frameMap.actualize(c.getPathToMap(),"Carte"+c.getFrName());
                         }
+                    
+                    if(frameLocator == null)
+                        frameLocator = new FrameImage(c.getPathToLocator(), "Carte Région "+c.getPathToLocator());
+                        else{
+                        	frameMap.actualize(c.getPathToLocator(),"CarteRégion"+c.getPathToLocator());
+                        }
+                    
+                    
+                    
                     
                 } else {
                     System.out.println("Pays Non existant");

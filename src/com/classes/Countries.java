@@ -36,6 +36,29 @@ public class Countries {
         return null;
 
     }
+    
+    /**
+     * Method used to search by english name uniquement 
+     */
+
+
+    public Country searByEnNameOnly(String engName) {
+        Collection<Country> values = countries.values();
+        for (Country c : values) {
+            if (c.getEnName().equals(engName)) {
+                return c;
+            }
+
+
+        }
+        return null;
+
+    }
+    
+    
+    
+    
+    
 
     /**
      * Method used to search by french name
