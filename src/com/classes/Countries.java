@@ -1,9 +1,6 @@
 package com.classes;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
  * Le modèle contenant la liste de pays et différentes fonctions de recherche
@@ -67,15 +64,37 @@ public class Countries {
     }
 
     /**
-     * Affiche la liste des pays triés par ordre croissant selon les noms francais
+     * @return La liste de pays triés par nom francais croissant
      */
-    public void sortByFrName() {
+    public List<Country> sortByFrName() {
         Map<String, Country> noms = new TreeMap<>();
         for (Map.Entry<String, Country> pays : countries.entrySet())
             noms.put(pays.getValue().getFrName(), pays.getValue());
 
-        for (Map.Entry<String, Country> nomPays : noms.entrySet())
+        List<Country> countryList = new ArrayList<>();
+        for (Map.Entry<String, Country> nomPays : noms.entrySet()) {
             System.out.println(nomPays.getValue() + "\n");
+            countryList.add(nomPays.getValue());
+        }
+        return countryList;
+    }
+
+    /**
+     * @return La liste de pays triés par population croissante
+     */
+    public List<Country> sortByPopulation() {
+        Map<String, Country> paysmap = new TreeMap<>();
+        for (Map.Entry<String, Country> pays : countries.entrySet()) {
+            if (pays.getValue().getPop() != null)
+                paysmap.put(pays.getValue().getPop(), pays.getValue());
+        }
+
+        List<Country> countryList = new ArrayList<>();
+        for (Map.Entry<String, Country> nomPays : paysmap.entrySet()) {
+            System.out.println(nomPays.getValue() + "\n");
+            countryList.add(nomPays.getValue());
+        }
+        return countryList;
     }
 
     /**

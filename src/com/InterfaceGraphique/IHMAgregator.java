@@ -4,6 +4,7 @@ import com.classes.AllData;
 import com.controllers.FramesImagesController;
 import com.controllers.LabelsPaysController;
 import com.controllers.RechercheController;
+import com.controllers.TriController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -55,11 +56,11 @@ public class IHMAgregator extends JFrame {
         // Le pays courant, s'il est mis à jour, ca met à jour les composants de la fenetre
         paysSelection = new PaysSelection();
 
-        creerPanelActions();
         panelCentre = new JPanel(new GridLayout(1, 2));
         creerPanelInfosPays();
         creerListePays();
         contentPane.add(panelCentre, BorderLayout.CENTER);
+        creerPanelActions();
 
         frameDrapeau = new FrameImage();
         frameMap = new FrameImage();
@@ -80,6 +81,7 @@ public class IHMAgregator extends JFrame {
     }
 
     public void creerListePays() {
+
         DefaultListModel<String> modelListe = new DefaultListModel<>();
         modelListe.addElement("Aucun pays sélectionné");
 
@@ -87,10 +89,11 @@ public class IHMAgregator extends JFrame {
         listePays.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listePays.setSelectedIndex(0);
 
-        JPanel panelListePays = new JPanel();
-        panelListePays.add(listePays);
+
+        JScrollPane panelListePays = new JScrollPane();
+        panelListePays.setViewportView(listePays);
         panelListePays.setBorder(BorderFactory.createLoweredSoftBevelBorder());
-        panelListePays.setPreferredSize(new Dimension(400, 200));
+        panelListePays.setPreferredSize(new Dimension(400, 600));
         panelCentre.add(panelListePays);
     }
 
@@ -137,11 +140,12 @@ public class IHMAgregator extends JFrame {
         JPanel panelTri = new JPanel();
         triComboBox = new JComboBox<>();
         triComboBox.addItem("Tri par Nom Francais");
-        triComboBox.addItem("Tri par Région");
         triComboBox.addItem("Tri par Population");
+        triComboBox.addItem("Tri par Région");
         triComboBox.addItem("Tri par Etc");
         panelTri.add(triComboBox);
         triBouton = new JButton("Trier");
+        triBouton.addActionListener(new TriController(data, triComboBox, listePays));
         panelTri.add(triBouton);
 
         JPanel panelActions = new JPanel(new GridLayout(2, 1));
