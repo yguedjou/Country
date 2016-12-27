@@ -59,14 +59,8 @@ public class Countries {
 
     public Country searchByfrName(String frName) {
         Collection<Country> values = countries.values();
-<<<<<<< HEAD
-        for (Country c : values) {
-        	
-            if (c.getFrName().toLowerCase().trim().contains(frName)) {
-=======
         for (Country c : values)
             if (c.getFrName().toLowerCase().trim().contains(frName))
->>>>>>> da5370abe961990c5e3b51403a50cf48c5ad98c2
                 return c;
         return null;
     }
