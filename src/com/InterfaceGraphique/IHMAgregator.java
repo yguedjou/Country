@@ -52,6 +52,7 @@ public class IHMAgregator extends JFrame {
         this.setLocation(50, 50);
         this.setResizable(false);
 
+        // Le pays courant, s'il est mis à jour, ca met à jour les composants de la fenetre
         paysSelection = new PaysSelection();
 
         creerPanelActions();

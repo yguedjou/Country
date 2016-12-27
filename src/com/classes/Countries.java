@@ -35,29 +35,20 @@ public class Countries {
                 return c;
         return null;
     }
-    
+
     /**
-     * Method used to search by english name uniquement 
+     * Pour chercher un pays par son nom anglais
+     *
+     * @param engName Le nom anglais du pays à chercher
+     * @return Le pays trouvé, ou null sinon
      */
-
-
     public Country searByEnNameOnly(String engName) {
         Collection<Country> values = countries.values();
-        for (Country c : values) {
-            if (c.getEnName().equals(engName)) {
+        for (Country c : values)
+            if (c.getEnName().equals(engName))
                 return c;
-            }
-
-
-        }
         return null;
-
     }
-    
-    
-    
-    
-    
 
     /**
      * Recherche dans la liste des pays par le nom francais
@@ -65,6 +56,7 @@ public class Countries {
      * @param frName Le nom francais à chercher
      * @return Le pays correspondant, ou null si aucun résultat
      */
+
     public Country searchByfrName(String frName) {
         Collection<Country> values = countries.values();
         for (Country c : values)
@@ -87,6 +79,9 @@ public class Countries {
 
     /**
      * Recherche dans la liste des pays par la population
+     *
+     * @param pop La valeur de la population à chercher
+     * @return Le pays correspondant, ou null si aucun résultat
      */
     public Country searchByPopulation(String pop) {
         HashMap<String, Country> populations = new HashMap<>();
