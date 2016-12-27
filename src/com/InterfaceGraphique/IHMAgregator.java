@@ -28,7 +28,6 @@ public class IHMAgregator extends JFrame {
     private JComboBox comboBox;
     private ImageIcon flag;
     private JLabel lblFlag;
-    
 
 
     public IHMAgregator(String title) {
@@ -116,6 +115,13 @@ public class IHMAgregator extends JFrame {
 
     // inner class
 
+    /**
+     * Launch the application.
+     */
+    public static void main(String[] args) {
+        new IHMAgregator();
+    }
+
     public class ItemState implements ItemListener {
         @Override
         public void itemStateChanged(ItemEvent e) {
@@ -147,22 +153,22 @@ public class IHMAgregator extends JFrame {
                 if (c != null) {
 
                     lblNom.setText("Nom:" + "\t" + c.getFrName());
-                    lblSuper.setText("Superficie:"+ "\t" + c.getArea());
+                    lblSuper.setText("Superficie:" + "\t" + c.getArea());
                     lblPopulation.setText("Population:" + "\t" + c.getPop());
                     lblDens.setText("Densité: " + "\t" + c.getDensite());
 
-                    if(frameDrapeau == null)
-                    frameDrapeau = new FrameImage(c.getPathToflag(), "Drapeau "+c.getFrName());
-                    else{
-                    	frameDrapeau.actualize(c.getPathToflag(),"Drapeau "+c.getFrName());
+                    if (frameDrapeau == null)
+                        frameDrapeau = new FrameImage(c.getPathToflag(), "Drapeau " + c.getFrName());
+                    else {
+                        frameDrapeau.actualize(c.getPathToflag(), "Drapeau " + c.getFrName());
                     }
-                    
-                    if(frameMap == null)
-                        frameMap = new FrameImage(c.getPathToMap(), "Carte "+c.getFrName());
-                        else{
-                        	frameMap.actualize(c.getPathToMap(),"Carte"+c.getFrName());
-                        }
-                    
+
+                    if (frameMap == null)
+                        frameMap = new FrameImage(c.getPathToMap(), "Carte " + c.getFrName());
+                    else {
+                        frameMap.actualize(c.getPathToMap(), "Carte" + c.getFrName());
+                    }
+
                 } else {
                     System.out.println("Pays Non existant");
                 }
@@ -175,13 +181,5 @@ public class IHMAgregator extends JFrame {
 
         }
 
-    }
-
-
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        new IHMAgregator();
     }
 }
