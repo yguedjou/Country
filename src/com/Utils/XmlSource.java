@@ -5,22 +5,27 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Classe de parsage du fichier XML contenant les liens entre les noms des fichiers graphiques et les codes des pays
+ *
+ * @author Yasmine Guedjou
+ * @since 22-12-2016
+ */
 public class XmlSource {
+    private static char[] separators = {'<', '=', '\t'};
+    private static char specialChars = '"';
     private String name;
     private String fips;
     private String region;
-    private static char[] separators = {'<', '=', '\t'};
-    private static char specialChars = '"';
 
     /**
      * method used to parse a line of xml file
      *
-     * @param line
-     * @return
+     * @param line The line to parse
+     * @return The line parsed in an array
      */
     public static String[] lineParser(String line) {
         String[] result = null;
-
 
         /** Using as the number  of values are unknown at this stage */
         ArrayList<String> parsedLine = new ArrayList<String>();
@@ -82,11 +87,12 @@ public class XmlSource {
         return result;
     }
 
-
     /**
-     * Method used to get fips of a country
+     * Method used to get the fips of a country
+     *
+     * @param path The path of the file to read
+     * @return A list of the lines parsed
      */
-
     public ArrayList<String[]> parser(String path) {
 
         BufferedReader br = null;
@@ -124,8 +130,6 @@ public class XmlSource {
         }
         return result;
     }
-
-
 }
 
 	
