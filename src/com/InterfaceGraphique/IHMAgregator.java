@@ -1,10 +1,7 @@
 package com.InterfaceGraphique;
 
 import com.classes.AllData;
-import com.controllers.FramesImagesController;
-import com.controllers.LabelsPaysController;
-import com.controllers.RechercheController;
-import com.controllers.TriController;
+import com.controllers.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -88,7 +85,7 @@ public class IHMAgregator extends JFrame {
         listePays = new JList<>(modelListe);
         listePays.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listePays.setSelectedIndex(0);
-
+        listePays.addListSelectionListener(new ListeController(listePays, paysSelection, data));
 
         JScrollPane panelListePays = new JScrollPane();
         panelListePays.setViewportView(listePays);
@@ -127,7 +124,6 @@ public class IHMAgregator extends JFrame {
         rechercheComboBox = new JComboBox<>();
         rechercheComboBox.addItem("Recherche Par Nom");
         rechercheComboBox.addItem("Recharche Par Population");
-        rechercheComboBox.addItem("Recherche Par Region");
         panelRecherche.add(rechercheComboBox);
         rechercheTextField = new JTextField();
         rechercheTextField.setColumns(15);
@@ -141,8 +137,6 @@ public class IHMAgregator extends JFrame {
         triComboBox = new JComboBox<>();
         triComboBox.addItem("Tri par Nom Francais");
         triComboBox.addItem("Tri par Population");
-        triComboBox.addItem("Tri par Région");
-        triComboBox.addItem("Tri par Etc");
         panelTri.add(triComboBox);
         triBouton = new JButton("Trier");
         triBouton.addActionListener(new TriController(data, triComboBox, listePays));

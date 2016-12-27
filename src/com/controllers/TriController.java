@@ -46,7 +46,7 @@ public class TriController implements ActionListener {
         else {
             for (Country country : countries) {
                 String cname = country.getFrName(), cpop = country.getPop(), carea = country.getArea();
-                modelListe.addElement((cname == null ? "" : cname) + " ; " + (cpop == null ? "" : cpop) + " hab. ; " + (carea == null ? "" : carea) + " km²");
+                modelListe.addElement((cname == null ? "" : cname) + "; " + (cpop == null ? "" : cpop) + " hab.; " + (carea == null ? "" : carea) + " km²");
             }
         }
         jListPays.setModel(modelListe);
